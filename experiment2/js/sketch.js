@@ -55,18 +55,18 @@ function setup() {
   bronze = color(208,162,52)
   // Array storing current rotations of gears
   spinY = []
-  for (let sy = 0; sy < 5; sy++) {
+  for (let sy = 0; sy < 10; sy++) {
     let spinX = [];
-    for (let sx = 0; sx < 5; sx++) {
+    for (let sx = 0; sx < 10; sx++) {
       spinX.push(0);
     }
     spinY.push(spinX);
   }
   // Array storing current acceleration of gears
   inY = []
-  for (let sy = 0; sy < 5; sy++) {
+  for (let sy = 0; sy < 10; sy++) {
     let inX = [];
-    for (let sx = 0; sx < 5; sx++) {
+    for (let sx = 0; sx < 10; sx++) {
       inX.push(0);
     }
     inY.push(inX);
@@ -97,8 +97,8 @@ function draw() {
   // Start of draw() code
   background(0);
   // Creates 5x5 grid of gears
-  for (let sy = 0; sy < 5; sy++) {
-    for (let sx = 0; sx < 5; sx++) {
+  for (let sy = 0; sy < 10; sy++) {
+    for (let sx = 0; sx < 10; sx++) {
       push()
       scale(.5)
       translate(sx*500, sy*500);
@@ -160,20 +160,20 @@ function mousePressed() {
   if (gearY != 0) {
     inY[gearY-1][gearX] += 2.75;
   }
-  if (gearX != 5 && gearY != 5) {
+  if (gearX != 10 && gearY != 10) {
     inY[gearY+1][gearX+1] += 1.75;
   }  
-  if (gearX != 5) {
+  if (gearX != 10) {
     inY[gearY][gearX+1] += 2.5;
   }  
-  if (gearY != 5) {
+  if (gearY != 10) {
     inY[gearY+1][gearX] += 2.5;
   }
   
-  if (gearX != 0 && gearY != 5) {
+  if (gearX != 0 && gearY != 10) {
     inY[gearY+1][gearX-1] += 1.75;
   }
-  if (gearX != 5 && gearY != 0) {
+  if (gearX != 10 && gearY != 0) {
     inY[gearY-1][gearX+1] += 1.75;
   }
 }
