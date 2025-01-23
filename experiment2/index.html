@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment 2 - Vector Art, Animation & Interactivity</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -32,7 +32,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 2 - Vector Art, Animation & Interactivity</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
@@ -45,17 +45,33 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>By clicking on the screen, the wall of gear will rotate, mimicking cogs in a machine!</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>The gears are drawn in a function, which is then called and translated 100 times. Each of the gears have 
+					their rotation values stored in 2D arrays, which are individually called per gear as they're drawn in order
+					to rotate.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>	I did this experiment completely by myself, and found the entire experience very unique. I had never worked in p5.js before, 
+					and it was very interesting to work in an environment where items had to be drawn each frame, rather than having objects 
+					which could be saved.
+					In terms of difficulties, one of the biggest ones was finding out why the gears were stuck together. I had messed around with 
+					several inputs for translations, as well as where the translations were called, trying to find a combination with good results, 
+					which I did eventually get to. Another big issue was trying to figure out why the gears, when separated, had issues spinning. 
+					I ended up rewriting a lot of code, undoing those rewrites, and even making a new function for drawing the gears in order to 
+					isolate the issue. At one point, I even wondered if the issue was with my 2D array implementation and if p5.js was somehow 
+					struggling with it, though that thankfully wasn’t the case. Finding the solution to this, however, was the biggest epiphany 
+					I had felt in a while, though I definitely felt a bit stupid for forgetting about changing an entire function of my code.
+					In regards to the project’s highs, the most notable moments were seeing the gear finally spin smoothly, then seeing the full 
+					array of gears laid out, then seeing the final output where the neighboring gears would spin as well. Overall, the project had 
+					many small victories, which left me feeling proud of my work by the end of it. I learned to feel confident in my coding skills, 
+					even with a new language and environment, and enjoyed my time with it!
+					</p>
 			</div>
 
 		</section>
