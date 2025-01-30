@@ -32,7 +32,7 @@ class MyClass {
 
 function preload() {
   soundFormats('mp3');
-  zap = loadSound('./sounds/zip.mp3')
+  zap = loadSound("experiment3\sounds\zip.mp3")
 }
 
 function resizeScreen() {
