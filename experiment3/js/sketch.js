@@ -30,17 +30,17 @@ class MyClass {
     }
 }
 
+/*function preload() {
+  soundFormats('mp3');
+  zap = loadSound("experiment3\sounds\zip.mp3")
+}*/
+
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
   centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
   console.log("Resizing...");
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
   // redrawCanvas(); // Redraw everything based on new size
-}
-
-function preload() {
-  soundFormats('mp3');
-  zap = loadSound("../sounds/zip.mp3");
 }
 
 // setup() function is called once when the program starts
@@ -83,16 +83,16 @@ function draw() {
 
   background(0);
   if (mouseIsPressed) {
-    if (!zap.isPlaying()) {
+    /*if (!zap.isPlaying()) {
       zap.play();      
-    }
+    }*/
     stroke(random(167,212), random(100,147), 255);
     translate(width / 2, height);
     branch(height / 4, angle, count, balance);
   }
-  else {
+  /*else {
     zap.stop()
-  }
+  }*/
 }
 
 function branch(len, angle, count, balance) {
