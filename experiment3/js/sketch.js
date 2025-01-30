@@ -30,17 +30,17 @@ class MyClass {
     }
 }
 
-function preload() {
-  soundFormats('mp3');
-  zap = loadSound("experiment3\sounds\zip.mp3")
-}
-
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
   centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
   console.log("Resizing...");
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
   // redrawCanvas(); // Redraw everything based on new size
+}
+
+function preload() {
+  soundFormats('mp3');
+  zap = loadSound("experiment3/sounds/zip.mp3");
 }
 
 // setup() function is called once when the program starts
