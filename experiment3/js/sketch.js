@@ -40,7 +40,7 @@ function resizeScreen() {
 
 function preload() {
   soundFormats('mp3');
-  zap = loadSound("./js/sounds/zip.mp3");
+  zap = loadSound("../sounds/zip.mp3");
 }
 
 // setup() function is called once when the program starts
