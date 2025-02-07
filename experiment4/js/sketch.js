@@ -14,6 +14,10 @@ const VALUE2 = 2;
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
+let colorData;
+let saveCheck = false;
+let saveColor = [0,0,0,0];
+let butter = true;
 
 class MyClass {
     constructor(param1, param2) {
@@ -51,19 +55,14 @@ function setup() {
   resizeScreen();
 
   // Start of setup() code
-  let img;
-  let colorData;
-  let saveCheck = false;
-  let saveColor = [0,0,0,0];
-  let butter = true;
   video = createCapture(VIDEO);
-  video.size(640, 480);
+  video.size(width, height);
   video.hide();
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  image(video, 0, 0, 640, 480);
+  image(video, 0, 0, width, height);
   loadPixels();
   colorData = pixels;
   let endCount = pixels.length;
@@ -102,12 +101,12 @@ function draw() {
   updatePixels();
   if (butter == true) {
     loadPixels();
-    for (let i=0; i<endCount; i+=120) {  // Searches every pixel
+    for (let i=0; i<endCount; i+=132) {  // Searches pixels
       if (pixels[i] != 0 && pixels[i+1] != 0 && pixels[i+2] != 0) {
-        stroke(pixels[i], pixels[i+1],pixels[i+2],90);
+        stroke(pixels[i], pixels[i+1],pixels[i+2],75);
         let xLoc = (i/(4*pixelDensity()) % width);
         let yLoc = Math.floor(i / (8 * pixelDensity() * width));
-        line(xLoc,yLoc,xLoc+75,yLoc+75)
+        line(xLoc,yLoc,xLoc+55,yLoc+55)
       }
     }
   }
