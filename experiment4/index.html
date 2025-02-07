@@ -50,10 +50,13 @@
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>The gears are drawn in a function, which is then called and translated 100 times. Each of the gears have 
-					their rotation values stored in 2D arrays, which are individually called per gear as they're drawn in order
-					to rotate. Upon clicking near a gear, the speed of the gear's rotation will increase, as well as any neighboring gears to a 
-					lesser degree, unitl their speeds eventually decrease and the gear slows to a stop over time.</p>
+				<p>Using the webcam as an input, pixels are grabbed from the frame and their color data is stored from the pixels array. From there, 
+					the image goes through a threshold filter, turning the image grayscale. Each black pixel is then given the original RGBA values 
+					of the next white filtered pixel, creating a colored outline of the original input. Going through the pixel array of the filtered 
+					image, each white pixel is made black, giving the image a black background and allowing the colored outlines to be easily detectible.
+					The coordinates of the outlines' pixels are then found using the pixels array, which are used with its color values to create
+					colored lines stemming from the outline, resulting in a blurred effect.
+				</p>
 			</div>
 
 			<div class="minor-section">
