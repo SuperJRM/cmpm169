@@ -101,12 +101,12 @@ function draw() {
   updatePixels();
   if (butter == true) {
     loadPixels();
-    for (let i=0; i<endCount; i+=132) {  // Searches pixels
+    for (let i=0; i<endCount; i+=120) {  // Searches pixels
       if (pixels[i] != 0 && pixels[i+1] != 0 && pixels[i+2] != 0) {
-        stroke(pixels[i], pixels[i+1],pixels[i+2],75);
+        stroke(pixels[i], pixels[i+1],pixels[i+2],90);
         let xLoc = (i/(4*pixelDensity()) % width);
         let yLoc = Math.floor(i / (8 * pixelDensity() * width));
-        line(xLoc,yLoc,xLoc+55,yLoc+55)
+        line(xLoc,yLoc,xLoc+75,yLoc+75)
       }
     }
   }
