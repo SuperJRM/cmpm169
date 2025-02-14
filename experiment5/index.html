@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 5 - 3D Graphics</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+	<!-- Load p5.js library -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+
+	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
+    <script type="text/javascript" src="../js/site.js" DEFER></script>
+	<!-- Use me for a JavaScript OOP Project -->
+	<script type="text/javascript" src="./js/project.js" DEFER></script>
+	<!-- Use me for a p5.js project -->
+	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+</head>
+<body>
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 5 - 3D Graphics</h1>
+
+			<div class="minor-section">
+				<div id="canvas-container">
+					<!-- canvas will be added here -->
+				</div>
+                <div class="fullscreen-box">
+                    <button id="fullscreen">Fullscreen</button>
+                </div>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p>Click and drag to guide the mass of cubes around the screen!</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p>Eighteen rows of rings, each containing a random number of cubes, constantly lerp their positions toward the dragging mouse.
+					Alongside this, each ring has their cubes and their distances from the canter change using a modified sine function, with each
+					ring rotating along the X-axis using a modified 1/x function. The rings are then rotated along the Z-axis depending on the 
+					mouse's position on the Y-axis. A directional light is used to illuminate the boxes' metallic textures.
+				</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p>	Completing this project by myself, I feel like I was able to gain a really strong grasp on how 3D works in p5.js, especially with how one would manipulate the 3 axes. The highs definitely came from the end of the project where I finally reached a point where the experiment was something I actually thought looked cool. The lows for the project probably came from the initial struggle to wrap my head around 3D rotations. The mistakes were simple enough, to the point where I didn’t really feel that noting them in my documentation was important, but over time I really felt like I was struggling until it all clicked by the end. However, I can safely say that I am now experienced in 3D when it comes to p5.js!
+					</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<!-- Put link back to homepage here. -->
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+		</nav>
+	</main>
+</body>
+</html>
