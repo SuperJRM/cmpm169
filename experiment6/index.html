@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 6 - Grammars & Text Art</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+	<!-- Load p5.js library -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+
+	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
+    <script type="text/javascript" src="../js/site.js" DEFER></script>
+	<!-- Use me for a JavaScript OOP Project -->
+	<script type="text/javascript" src="./js/project.js" DEFER></script>
+	<!-- Use me for a p5.js project -->
+	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+</head>
+<body>
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 6 - Grammars & Text Art</h1>
+
+			<div class="minor-section">
+				<div id="canvas-container">
+					<!-- canvas will be added here -->
+				</div>
+                <div class="fullscreen-box">
+                    <button id="fullscreen">Fullscreen</button>
+                </div>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p>Sit back and enjoy the surreal brainwashing!</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p>A random GIF is displayed every 3 seconds by storing URLs of GIFs and loading them into an array where they are pulled onto the 
+					screen. The name of the tag is flashed on top of the GIF, and spoken using a text-to-speech function.</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p>This was the first experiment I worked on with a partner, which was a pretty different experience to how I normally did these 
+					assignments. I had originally come up with the sleeper agent idea, alongside the general structure of how the experiment would 
+					be laid out code-wise. Pulling up the 3D text and Giphy examples, I reverse-engineered their structures to find out how they 
+					functioned, and once Tyler got the skeleton code working, I changed the systems to match the timer rather than user interaction 
+					and got the new tag generation system working. I think we did a really good job getting the original vision across, and I feel 
+					that we split the work pretty evenly, all things considered. The highs of the projects were definitely the full implementation 
+					of the gifs and text, since that felt like a huge jump in progress visually. The lows definitely had to do with starting the 
+					project, since neither of us were too experienced with APIs so we had a hard time understanding the original example. Overall, 
+					though, I think the project is something pretty unique that we’re both really proud of!
+					</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<!-- Put link back to homepage here. -->
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+		</nav>
+	</main>
+</body>
+</html>
