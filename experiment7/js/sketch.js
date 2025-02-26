@@ -14,20 +14,20 @@ const VALUE2 = 2;
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
-const tag = ["Ashen", "Circuit", "Thunder", "Hollow", "Lantern", "Nightfall", "Tattered", "Serpent", "Gravity", "Grit", "Hallowed", "Tenth", "Ember", "Rust", "Veil", "Forgotten", "Iron", "Chasm", "Risen", "Glimmer", "Phantom", "Cradle", "Shattered", "Murmur", "Trapped", "Broken", "Echo", "Slumber", "Fading", "Rift", "Crescent", "Silent", "Warden", "Frost", "Twilight", "Solitude", "Abyss", "Withered", "Threshold", "Sunder", "Whisper", "Tangle", "Dusk", "Fathom", "Veiled", "Cinder", "Rapture", "Eclipse", "Paragon", "Solace"];
-const api = "https://api.giphy.com/v1/stickers/search?&api_key=";
-const apiKey = ["Ln1OMDKTMpwmS1AX3OnlmVBfPsuSEkje", "A6MgOoK9jJ0wFHnuM3rI9GzXLkrmAChZ"];
-let currentKey = 0;
-let currentTag = 0;
-let tagList = [];
-let subTag = [];
-let query;
-let GIFurls = [];
-let loadedImages = [];
-let GIFnum = 0;
-let lastSpawnTime = 0;
-let spawnInterval = 3000; // New GIF every 3 seconds
-let font;
+let video;
+let playing = false;
+let inputFlag = false;
+let helmetInput;
+let drinkInput;
+let userDrinks;
+let spdInput;
+let userSpd;
+let wearingHelmet = false;
+let validCheck = false;
+let deadCheck = false;
+let miles = 0;
+let mileInterval;
+let crashed = false;
 
 class MyClass {
     constructor(param1, param2) {
@@ -68,79 +68,130 @@ function setup() {
   });
   resizeScreen();
 
-  textSize(128);
+  video = createVideo('assets/SickBike.mp4');
+  //video.size(width, height);
+  video.hide();
+  
   textAlign(CENTER, CENTER);
-  for (let i = 0; i < 10; i++) {
-    let tagInsert = floor(random(tag.length));
-    let tagCheck = true;
-    print(tagInsert)
-    for (let j = 0; j < tagList.length; j++){
-      if (tagList[j] == tagInsert) {
-        tagCheck = false;
-      }
-    }
-    if (tagCheck == true) {
-      tagList.push(tagInsert);
-      subTag.push(tag[tagInsert]); 
-      print(tag[tagInsert])
-    }
-  }
-  query = subTag[currentTag];
-  getJSON();
+  helmetInput = createCheckbox("Wearing a helmet?", false);
+  helmetInput.position(windowWidth / 2 - 80, windowHeight / 2 - 50); 
+  
+  drinkInput = createInput('');
+  drinkInput.position(windowWidth / 2 - 60, windowHeight / 2);
+  
+  spdInput = createInput('');
+  spdInput.position(windowWidth / 2 - 60, windowHeight / 2 + 60);
+  
+  helmetInput.changed(handleHelmetChange);
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(0);
-
+  textFont(font);
+  if (crashed) {
+    background(0);
+    textSize(32);
     fill(255);
-    if (millis() - lastSpawnTime > spawnInterval || lastSpawnTime == 0) {
-        lastSpawnTime = millis();
-        // Swap to a new GIF
-        currentTag = (currentTag + 1) % subTag.length;
-        query = subTag[currentTag];
-        speakTag()
-        getJSON();
+    text("You crashed!", 0, 0);
+    if (deadCheck) {
+      text("You've Died.", 0, 50);
+    }
+    else{
+      text("You made it out alive.", 0, 50);
+    }
+    return;
+  }
+
+  textSize(32);
+  background(220);
+  fill(0);
+  text("Hey New Rider!", 0, -100);
+  textSize(16);
+  text("How many drinks have you had?", 50, - 20);
+  text("Speed limit's 70. How fast are you riding?", 100, 40);
+
+  if (inputFlag) {
+    validCheck = true;
+    userDrinks = Number(drinkInput.value()); 
+    userSpd = Number(spdInput.value());
+
+
+    print("Wearing Helmet:", wearingHelmet);
+
+    if (isNaN(userDrinks)) { 
+      print("Test Failed: Not a Number for Drinks");
+      validCheck = false;
+    } else {
+      print("Hooray! Valid number:", userDrinks);
+    }
+    
+    if (isNaN(userSpd)) { 
+      print("Test Failed: Not a Number for Speed");
+      validCheck = false;
+    } else {
+      print("Hooray! Valid number:", userSpd);
     }
 
-    if (loadedImages.length > 0 && GIFnum < loadedImages.length && loadedImages[GIFnum]) {
-    push();
-    imageMode(CENTER);
-    image(loadedImages[GIFnum], 0, 0, width, height);
-    pop();
-} 
-else {
-    console.log("Skipping draw, image not loaded yet.");
-}
-  textFont(font);
-  text(subTag[currentTag], 0, 0); 
-}
+    drinkInput.value('');
+    spdInput.value('');
+    helmetInput.checked(false);
+    
+    inputFlag = false;
+  }
+  
+  if (validCheck && !crashed) {
+    background(255, 0, 0);
 
-function getJSON() {
-  let url = api + apiKey[currentKey] + "&q=" + query + "&limit=10";
-  loadJSON(url, gotData, loadError);
-}
+    drinkInput.remove();
+    spdInput.remove();
+    helmetInput.remove();
 
-function gotData(giphy) {
-  GIFurls = [];
-  loadedImages = [];
-  for (let i = 0; i < giphy.data.length; i++) {
-      GIFurls.push(giphy.data[i].images.fixed_height.url);
-      loadImage(GIFurls[i], gotGIF, loadError);
+    image(video, 0, 0, width, height);
+    video.show();
+    
+    textSize(32);
+    fill(255);
+    text("Enjoy the ride!", 0, -100);
+
+    startSimulation(userDrinks, userSpd, wearingHelmet);
   }
 }
 
-function gotGIF(giphyImg) {
-  loadedImages.push(giphyImg);
+function keyPressed() {
+  if (keyCode === ENTER) {
+    inputFlag = true;
+  }
 }
 
-function loadError(errMsg) {
-  console.log("Load error: " + errMsg);
-  currentKey = (currentKey + 1) % apiKey.length;
-  getJSON();
+function handleHelmetChange() {
+  wearingHelmet = helmetInput.checked();
 }
 
-function speakTag() {
-  const utterance = new SpeechSynthesisUtterance(subTag[currentTag]);
-  window.speechSynthesis.speak(utterance);
+function startSimulation(drinks, speed, helmet) {
+    crashed = false;
+    miles += speed/deltaTime;    
+    textSize(24);
+    print(miles)
+    let milePrint = int(miles)
+    text(`Miles Driven: ${milePrint}`, 0, -50);
+    if (checkForAccident(drinks, speed, helmet)) {
+        crashed = true;
+        deadCheck = deathChance(userDrinks, userSpd, wearingHelmet);
+        return;
+    }
+}
+
+function checkForAccident(drinks, speed, helmet) {
+    let baseChance = 0.00864; //Rate based on injury rate for each VMT per rider
+    baseChance*=(speed/deltaTime); //Account for miles traveled
+    return ((Math.random()*100) < baseChance);
+}
+
+function deathChance(drinks, speed, helmet) {
+    let baseChance = 0.0751;
+  
+    if (drinks > 0) baseChance *= (drinks*1.27);
+    if (speed > 70) baseChance *= ((speed - 70) * 1.034);
+    if (helmet) baseChance /= 3.7;
+    return (Math.random() < baseChance);
 }
